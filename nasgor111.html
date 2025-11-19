@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Warung Nasi Goreng Mantap</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff3e0;
+      color: #3e2723;
+    }
+
+    header {
+      background: #ff6f00;
+      padding: 30px 20px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      background: #bf360c;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      background: #ff8f00;
+      color: #bf360c;
+    }
+
+    .container {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      margin: 30px auto;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid #ff6f00;
+    }
+    .card h2 {
+      color: #bf360c;
+    }
+
+    button {
+      padding: 12px 25px;
+      background: #ff8f00;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #ff6f00;
+      transform: translateY(-2px);
+    }
+
+    #pesan {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #bf360c;
+      font-style: italic;
+    }
+
+    #menuPopup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      width: 90%;
+      max-width: 350px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      text-align: center;
+      z-index: 200;
+      border-top: 5px solid #bf360c;
+    }
+    #menuPopup select, #menuPopup input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .tutup-btn {
+      background: #d32f2f !important;
+    }
+    .tutup-btn:hover {
+      background: #c62828 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+  <img class="logo" src="logo.png" alt="Logo" />
+  <h1>Warung Nasi Goreng 'Nampol'️</h1>
+  <p>Rasa Bintang Lima, Harga Kaki Lima. Pedasnya Mantap!</p>
+</header>
+
+<style>
+  header {
+    position: relative;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .logo {
+    position: absolute;
+    top: 40px;
+    left: 100px;
+    width: 90px;     /* Atur ukuran logo */
+  }
+</style>
+
+
+  <nav>
+    <a href="#home">Beranda</a>
+    <a href="#menu">Menu</a>
+    <a href="#kontak">Lokasi & Kontak</a>
+  </nav>
+
+  <!-- HOME -->
+  <div class="container" id="home">
+    <div class="card">
+      <h2>Selamat Datang, Sobat Lapar!</h2>
+      <p>Kami menyajikan nasi goreng spesial dengan bumbu rahasia turun-temurun. Siap-siap ketagihan!</p>
+      <button onclick="bukaMenu()">Pesan Sekarang</button>
+      <div id="pesan"></div>
+    </div>
+  </div>
+
+  <!-- POPUP PEMESANAN -->
+  <div id="menuPopup">
+    <h3>🛒 Form Pemesanan</h3>
+
+    <select id="menuPilihan">
+      <option value="Nasi Goreng Ayam">Nasi Goreng Ayam - 15.000</option>
+      <option value="Nasi Goreng Seafood">Nasi Goreng Seafood - 20.000</option>
+      <option value="Nasi Goreng Spesial Komplit">Nasi Goreng Spesial Komplit - 25.000</option>
+    </select>
+
+    <select id="pedasPilihan">
+      <option value="Biasa">Pedas Biasa</option>
+      <option value="Sedang">Pedas Sedang</option>
+      <option value="Nampol">Pedas Nampol 🔥</option>
+    </select>
+
+    <select id="makanPilihan">
+      <option value="Makan di Tempat">Makan di Tempat</option>
+      <option value="Dibawa Pulang">Dibawa Pulang</option>
+    </select>
+
+    <!-- PILIHAN MINUMAN -->
+    <select id="minumanPilihan">
+      <option value="Tidak Memesan">Tanpa Minuman</option>
+      <option value="Es Teh">Es Teh - 5.000</option>
+      <option value="Es Jeruk">Es Jeruk - 7.000</option>
+      <option value="Teh Hangat">Teh Hangat - 4.000</option>
+      <option value="Air Mineral">Air Mineral - 3.000</option>
+    </select>
+
+    <input type="number" id="jumlah" min="1" value="1" />
+
+    <button onclick="prosesPesanan()">Pesan</button>
+    <button onclick="tutupMenu()" class="tutup-btn">Batal/Tutup</button>
+  </div>
+
+  <!-- MENU -->
+  <div class="container" id="menu">
+    <div class="card">
+      <h2>Daftar Menu Favorit</h2>
+      <p>Nasi Goreng Ayam (Rp 15.000)</p>
+      <p>Nasi Goreng Seafood (Rp 20.000)</p>
+      <p>Nasi Goreng Spesial Komplit (Rp 25.000)</p>
+      <p>Tersedia level pedas: Biasa, Sedang, Nampol!</p>
+      <p>Minuman tersedia: Es Teh, Es Jeruk, Teh Hangat, Air Mineral</p>
+    </div>
+  </div>
+
+  <!-- KONTAK -->
+  <div class="container" id="kontak">
+    <div class="card">
+      <h2>Lokasi & Kontak Kami</h2>
+      <p>📍 <b>Alamat:</b> Jl. Himalaya No.06, Sukorame, Bandar Lor, Kec. Mojoroto, Kota Kediri, Jawa Timur 64114</p>
+      <p>📧 <b>Email:</b> nasgormantap@lezat.com</p>
+      <p>📞 <b>Telepon:</b> 0812-3456-7890</p>
+	  <P><b>Dibuat oleh RIKI dan ADAM</b>
+    </div>
+  </div>
+
+  <script>
+    function bukaMenu() {
+      document.getElementById('menuPopup').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function tutupMenu() {
+      document.getElementById('menuPopup').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function prosesPesanan() {
+      const menu = document.getElementById("menuPilihan").value;
+      const pedas = document.getElementById("pedasPilihan").value;
+      const makan = document.getElementById("makanPilihan").value;
+      const minuman = document.getElementById("minumanPilihan").value;
+      const jumlah = document.getElementById("jumlah").value;
+
+      // Harga makanan
+      let harga = 0;
+      if (menu === "Nasi Goreng Ayam") harga = 15000;
+      else if (menu === "Nasi Goreng Seafood") harga = 20000;
+      else if (menu === "Nasi Goreng Spesial Komplit") harga = 25000;
+
+      // Harga minuman
+      let hargaMinum = 0;
+      if (minuman === "Es Teh") hargaMinum = 5000;
+      else if (minuman === "Es Jeruk") hargaMinum = 7000;
+      else if (minuman === "Teh Hangat") hargaMinum = 4000;
+      else if (minuman === "Air Mineral") hargaMinum = 3000;
+
+      const total = (harga * jumlah) + hargaMinum;
+
+      const output =
+        `🔥 Pesanan Anda:<br>
+        🍽️ Menu: <b>${menu}</b><br>
+        🌶️ Level Pedas: <b>${pedas}</b><br>
+        🏠 Tipe Pesanan: <b>${makan}</b><br>
+        🥤 Minuman: <b>${minuman}</b><br>
+        🔢 Jumlah: <b>${jumlah} porsi</b><br>
+        💰 Total Pembayaran: <b>Rp ${total.toLocaleString()}</b><br>
+        ✔️ Pesanan sedang diproses!`;
+
+      document.getElementById("pesan").innerHTML = output;
+      tutupMenu();
+    }
+  </script>
+
+</body>
+</html>
